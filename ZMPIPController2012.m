@@ -27,6 +27,7 @@ struct=writeParam2012(params, pRefModifier);
 out.struct=struct;
 offset = 0;
 zmperr = 0;
+out.mod = zeros(i);
     
 for k=1:i,
     out.obs(k, :)=obs(:);
@@ -53,6 +54,7 @@ for k=1:i,
                 pRef(s(si):s(si)+struct.N) + ...
                 struct.Ge(s(si)-k-1,1:3) * p(si) * err;
             balanced = balanced + p(si);
+            out.mod(s(si)) = out.mod(s(si))+ struct.Ge(s(si)-k-1,1:3) * p(si) * err;
         end;
     end;
 end
